@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Employee } from '../model/Employee';
 
 const baseUrl = 'http://localhost:3000/empl/';
@@ -17,7 +18,7 @@ export async function addEmployee(employee: Partial<Employee>): Promise<void> {
 
 export async function getEmployees(): Promise<Employee[]> {
     const response = await fetch(baseUrl, {
-        method: 'GET'        
+        method: 'GET'
     });
     if (!response.ok) {
         throw new Error('Failed to get employees');
@@ -26,10 +27,10 @@ export async function getEmployees(): Promise<Employee[]> {
     return parseEmployees(employees);
 }
 
-function parseEmployees(data: []): Employee[]{
+function parseEmployees(data: []): Employee[] {
     const employees: Employee[] = [];
     data.forEach((employee: any) => {
-        employees.push(extractEmployee(employee));  
+        employees.push(extractEmployee(employee));
     });
     return employees;
 }
@@ -81,4 +82,3 @@ export async function getEmployeeBio(id: number): Promise<string> {
     `;
     return bio;
 }
-    
